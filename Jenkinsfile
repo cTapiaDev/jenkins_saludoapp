@@ -9,7 +9,9 @@ pipeline {
     stages {
         stage('Clonar') {
             steps {
-                git 'https://github.com/cTapiaDev/jenkins_saludoapp'
+                // git 'https://github.com/cTapiaDev/jenkins_saludoapp'
+                // git branch: 'main', url: 'https://github.com/cTapiaDev/jenkins_saludoapp'
+                checkout scm
             }
         }
 

@@ -17,19 +17,19 @@ pipeline {
 
         stage('Compilar') {
             steps {
-                sh 'mvn clean compile'
+                bat 'mvn clean compile'
             }
         }
 
         stage('Probar') {
             steps {
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
 
         stage('Empaquetar') {
             steps {
-                sh 'mvn package'
+                bat 'mvn package'
             }
         }
     }

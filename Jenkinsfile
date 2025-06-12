@@ -36,7 +36,7 @@ pipeline {
 
     post {
         success {
-            echo 'El build fue exitoso'
+            echo 'El build fue exitoso automáticamente'
         }
 
         failure {

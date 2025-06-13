@@ -27,6 +27,14 @@ pipeline {
             }
         }
 
+        stage('SonarQube Anaylis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    bat 'mvn sonar:sonar'
+                }
+            }
+        }
+
         stage('Empaquetar') {
             steps {
                 bat 'mvn package'

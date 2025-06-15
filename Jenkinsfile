@@ -35,11 +35,27 @@ pipeline {
             }
         }
 
+        stage('Análisis de Dependencias') {
+            steps {
+                tool 'OWASP_DC_CLI'
+                dependencyCheck additionalArguments: '--project "saludoapp" --scan "target" --format "HTML" --format "XML"',
+                                outputDirectory: 'dependency-check-report',
+                                scanPath: 'target',
+                                skipPublishedReports: false,
+                                isCveRemoteEnabled: true,
+                                isExperimentalEnabled: false,
+                                failBuildOnCVSS: 7,
+                                name: 'OWASP Dependency-Check Report'
+            }
+        }
+
         stage('Empaquetar') {
             steps {
                 bat 'mvn package'
             }
         }
+
+        
     }
 
     post {

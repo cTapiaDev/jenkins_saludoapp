@@ -37,6 +37,7 @@ pipeline {
 
         stage('Análisis de Dependencias') {
             steps {
+                bat 'mkdir dependency-check-report'
                 tool 'OWASP_DC_CLI'
                 dependencyCheck odcInstallation: 'OWASP_DC_CLI', additionalArguments: '--project "saludoapp" --scan "target" --format "HTML" --format "XML" --out "dependency-check-report" --enableExperimental'
             }

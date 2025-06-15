@@ -38,7 +38,7 @@ pipeline {
         stage('Análisis de Dependencias') {
             steps {
                 tool 'OWASP_DC_CLI'
-                dependencyCheck additionalArguments: '--project "saludoapp" --scan "target" --format "HTML" --format "XML" --out "dependency-check-report" --enableExperimental --enableCve'
+                dependencyCheck odcInstallation: 'OWASP_DC_CLI', additionalArguments: '--project "saludoapp" --scan "target" --format "HTML" --format "XML" --out "dependency-check-report" --enableExperimental --enableCve'
             }
         }
 

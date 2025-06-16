@@ -43,6 +43,14 @@ pipeline {
             }
         }
 
+        stage('Análisis de Seguridad con Trivy') {
+            steps {
+                bat 'mkdir trivy-report'
+                bar 'trivy fs --format json --output trivy-report/vulnerabilities.json --severity HIGH,CRITICAL .'
+                archiveArtifacts artifacts: 'trivy-report/*', fingerprint: true
+            }
+        }
+
         stage('Empaquetar') {
             steps {
                 bat 'mvn package'

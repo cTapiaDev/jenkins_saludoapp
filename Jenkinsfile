@@ -37,7 +37,7 @@ pipeline {
 
         stage('Análisis de Dependencias') {
             steps {
-                bat 'mkdir dependency-check-report'
+                bat 'if not exist "dependency-check-report" mkdir "dependency-check-report"'
                 tool 'OWASP_DC_CLI'
                 dependencyCheck odcInstallation: 'OWASP_DC_CLI', additionalArguments: '--project "saludoapp" --scan "target" --format "HTML" --format "XML" --out "dependency-check-report" --enableExperimental'
             }
@@ -45,7 +45,7 @@ pipeline {
 
         stage('Análisis de Seguridad con Trivy') {
             steps {
-                bat 'mkdir trivy-report'
+                bat 'if not exist "trivy-report" mkdir "trivy-report"'
                 bar 'trivy fs --format json --output trivy-report/vulnerabilities.json --severity HIGH,CRITICAL .'
                 archiveArtifacts artifacts: 'trivy-report/*', fingerprint: true
             }

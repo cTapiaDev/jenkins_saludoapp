@@ -46,7 +46,7 @@ pipeline {
         stage('Análisis de Seguridad con Trivy') {
             steps {
                 bat 'if not exist "trivy-report" mkdir "trivy-report"'
-                bar 'trivy fs --format json --output trivy-report/vulnerabilities.json --severity HIGH,CRITICAL .'
+                bat 'trivy fs --format json --output trivy-report/vulnerabilities.json --severity HIGH,CRITICAL .'
                 archiveArtifacts artifacts: 'trivy-report/*', fingerprint: true
             }
         }
